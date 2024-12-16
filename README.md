@@ -14,8 +14,8 @@ Bu doküman, projenin nasıl kurulacağı ve test edileceği ile ilgili adımlar
    - `ConnectionString` kısmını kendi MSSQL bağlantı bilgileriniz ile değiştirin. Örnek bir bağlantı stringi:
      ```json
      "ConnectionStrings": {
-         "DefaultConnection": "Server=YOUR_SERVER_NAME;Database=YOUR_DATABASE_NAME;User Id=YOUR_USERNAME;Password=YOUR_PASSWORD;"
-     }
+     "MsSQLConnection": "Server=YourServerName;Database=Your_DbName;Integrated Security=True;TrustServerCertificate=True;"
+      }
      ```
 
 3. **Migrations Uygulama:**
@@ -59,7 +59,4 @@ Bu doküman, projenin nasıl kurulacağı ve test edileceği ile ilgili adımlar
 
 ---
 
----
-
-Bu adımları tamamladıktan sonra proje kurulumunuz hazır olacaktır. İyi çalışmalar!
 
