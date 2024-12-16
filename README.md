@@ -18,7 +18,13 @@ Bu doküman, projenin nasıl kurulacağı ve test edileceği ile ilgili adımlar
       }
      ```
 
-3. **Migrations Uygulama:**
+3. **Migration Eklenmesi:**
+   - Eğer henüz bir migration eklenmediyse, aşağıdaki komutları çalıştırarak bir migration oluşturun:
+     ```bash
+     dotnet ef migrations add InitialCreate
+     ```
+
+4. **Migrations Uygulama:**
    - Proje dosyalarını açtıktan sonra terminalde şu komutları çalıştırarak veritabanı migrasyonlarını uygulayın:
      ```bash
      dotnet ef database update
@@ -58,5 +64,3 @@ Bu doküman, projenin nasıl kurulacağı ve test edileceği ile ilgili adımlar
    - Kitaba ait detay sayfası açılacaktır. Kitap bilgilerini kontrol edin.
 
 ---
-
-
