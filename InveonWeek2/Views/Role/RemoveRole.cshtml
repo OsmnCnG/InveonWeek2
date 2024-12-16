@@ -1,0 +1,42 @@
+﻿@using InveonWeek2.Repository
+@model AppUser
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<AppUser> userManager
+
+
+<div class="container" style="background-color: #2d3339; color: white; padding: 20px; border-radius: 8px; width: 700px; margin: 20px auto;">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card" style="background-color: transparent; border: none;">
+                <div class="card-header" style="background-color: transparent; border: none; padding: 0;">
+                    <h2 class="mb-0" style="font-size: 24px; margin-bottom: 20px;">Kullanıcı Rol Silme</h2>
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <h4 class="card-title mb-4" style="font-size: 18px; margin-bottom: 15px;">@Model.UserName için silinecek Rolü Seçin</h4>
+                    <form asp-controller="Role" asp-action="RemoveRole" method="post">
+                        <input type="hidden" asp-for="Id" name="id" />
+
+                        <div class="form-group" style="margin: 20px 0;">
+                            <label for="role" class="form-label" style="display: block; margin-bottom: 10px;">Roller:</label>
+                            <select id="role" name="roleName" class="form-select" multiple style="width: 100%; background-color: #4a5159; color: white; border: none; border-radius: 4px; padding: 8px;" required>
+                                @* @foreach (var role in RoleManager.Roles)
+                                {
+                                    <option value="@role.Name" style="padding: 5px;">@role.Name</option>
+                                } *@
+                                @foreach (var role in await userManager.GetRolesAsync(await userManager.FindByEmailAsync(Model.Email)))
+                                {
+                                    <option value="@role" style="padding: 5px;">@role</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mt-4" style="display: flex; gap: 10px; margin-top: 20px;">
+                            <button type="submit" style="background-color: white; color: black; border: none; border-radius: 4px; padding: 8px 16px; cursor: pointer; font-size: 14px;">Rol Sil</button>
+                            <a asp-controller="User" asp-action="GetAllUsers" class="btn btn-secondary" style="background-color: #4a5159; color: white; border: none; border-radius: 4px; padding: 8px 16px; cursor: pointer; font-size: 14px; text-decoration: none;">İptal</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

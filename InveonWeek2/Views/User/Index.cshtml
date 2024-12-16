@@ -1,0 +1,152 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@using InveonWeek2.Repository
+
+@model List<AppUser>
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<AppUser> userManager
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+    .member-list-container {
+        margin-top: 30px;
+    }
+
+    .title {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .member-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .member-table th, .member-table td {
+        padding: 8px 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    .col-id {
+        width: 10%;
+    }
+
+    .col-name {
+        width: 20%;
+    }
+
+    .col-email {
+        width: 25%;
+    }
+
+    .col-phone {
+        width: 15%;
+    }
+
+    .col-roles {
+        width: 15%;
+    }
+
+    .col-assign, .col-remove, .col-edit {
+        width: 10%;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+    .action-buttons a {
+        margin: 0 5px;
+    }
+
+    .action-buttons i {
+        font-size: 1.2rem;
+    }
+    .btn:hover {
+        opacity: 0.9;
+    }
+
+</style>
+
+<div class="container member-list-container">
+    <h2 class="title">Üye Listesi</h2>
+
+    <table class="table member-table">
+        <thead>
+            <tr>
+                <th class="col-id" style="width:25%">ID</th>
+                <th class="col-name" style="width:20%">Ad</th>
+                <th class="col-email" style="width:10%">Email</th>
+                <th class="col-phone" style="width:10%">Telefon</th>
+                <th class="col-roles" style="width:10%">Kullanıcı rolleri</th>
+                <th class="col-assign" style="width:5%">Rol atama</th>
+                <th class="col-remove" style="width:5%">Rol silme</th>
+                <th class="col-edit" style="width:5%">Düzenle</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="3">Kayıtlı kullanıcı bulunamadı.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var member in Model)
+                {
+                    <tr>
+                        <td>@member.Id</td>
+                        <td>@member.UserName</td>
+                        <td>@member.Email</td>
+                        <td>@member.PhoneNumber</td>
+                        <td>
+                            @foreach (var role in await userManager.GetRolesAsync(member))
+                            {
+                                @role <br>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-success" asp-controller="Role" asp-action="AssignRole" asp-route-id="@member.Id">Rol Ata</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" asp-controller="Role" asp-action="RemoveRole" asp-route-id="@member.Id">Rol Sil</a>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="@Url.Action("UpdateUser", "User", new { id = member.Id })" class="btn btn-primary">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a asp-action="CreateUser" asp-controller="User" class="btn btn-success">Üye Ekle</a>
+
+</div>
+
+ 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+

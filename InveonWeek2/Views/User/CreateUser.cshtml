@@ -1,0 +1,63 @@
+﻿@using InveonWeek2.Dto
+
+@model UserDto
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Yeni Kullanıcı Oluştur</h2>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger text-center">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success text-center">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <form asp-action="CreateUser" asp-controller="User" method="post">
+        <div class="mb-3">
+            <label asp-for="UserName" class="form-label">Kullanıcı Adı</label>
+            <input asp-for="UserName" class="form-control" placeholder="Kullanıcı adı giriniz" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" type="email" class="form-control" placeholder="Email adresi giriniz" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label">Telefon Numarası</label>
+            <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="Telefon numarası giriniz" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Password" class="form-label">Şifre</label>
+            <input asp-for="Password" type="password" class="form-control" placeholder="Şifre giriniz" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <p>Şifre aşağıdaki kriterlere uygun olmalıdır:</p>
+        <ul>
+            <li>En az 8 karakter uzunluğunda olmalı.</li>
+            <li>En az bir büyük harf içermeli (A-Z).</li>
+            <li>En az bir küçük harf içermeli (a-z).</li>
+            <li>En az bir sayı içermeli (0-9).</li>
+            <li>En az bir özel karakter içermeli (e.g. #, $, %).</li>
+        </ul>
+
+        <div class="d-flex justify-content-between">
+            <a asp-action="GetAllUsers" class="btn btn-secondary">Geri Dön</a>
+            <button type="submit" class="btn btn-primary">Kullanıcı Oluştur</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+@using InveonWeek2.Repository
+@model List<AppRole>
+
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<h3>Roller</h3>
+<hr />
+
+<table class="table table table-bordered table-striped">
+    <tr>
+        <th style="width:47.5%">Role Id</th>
+        <th style ="width:47.5%">Rol ismi</th>
+        <th style="width:5%">Silme</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td><a class="btn btn-danger" asp-controller="Role" asp-action="RoleDelete" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></a></td>
+        </tr>
+
+    }
+</table>
+
+<a asp-action="RoleCreate" asp-controller="Role" class="btn btn-success">Role Oluştur</a>
+
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}

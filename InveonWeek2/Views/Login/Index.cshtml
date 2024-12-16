@@ -1,0 +1,144 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@* <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Giriş Yap</h4>
+                </div>
+                <div class="card-body">
+                    
+                    <form action="/Login/Login" method="POST">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">E-posta Adresi</label>
+                            <input type="email" class="form-control" id="email" name="Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Şifre</label>
+                            <input type="password" class="form-control" id="password" name="Password" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Beni Hatırla</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Giriş Yap</button>
+                    </form>
+                    <div class="mt-3">
+                        <a href="#" class="text-decoration-none">Şifremi Unuttum</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+<style>
+    body {
+        background-color: #000;
+        color: #fff;
+        min-height: 100vh;
+    }
+    .back-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .back-button:hover {
+        color: #ccc;
+    }
+    .login-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 120px 20px 0;
+    }
+    .form-control {
+        background-color: #111;
+        border: 1px solid #333;
+        color: #fff;
+        padding: 12px 16px;
+        margin-bottom: 16px;
+    }
+    .form-control:focus {
+        background-color: #111;
+        border-color: #666;
+        color: #fff;
+        box-shadow: none;
+    }
+    .form-control::placeholder {
+        color: #666;
+    }
+    .btn-primary {
+        background-color: #fff;
+        border: none;
+        color: #000;
+        padding: 12px;
+        width: 100%;
+        margin-bottom: 16px;
+        font-weight: 500;
+    }
+    .btn-primary:hover {
+        background-color: #e6e6e6;
+        color: #000;
+    }
+    .btn-github {
+        background-color: #111;
+        border: 1px solid #333;
+        color: #fff;
+        padding: 12px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+    .btn-github:hover {
+        background-color: #222;
+        color: #fff;
+    }
+    .divider {
+        text-align: center;
+        margin: 24px 0;
+        color: #666;
+        font-size: 14px;
+    }
+    .signup-link {
+        text-align: center;
+        margin-top: 24px;
+    }
+    .signup-link a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .signup-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+
+<div class="login-container">
+    <h1 class="h3 mb-2">Inveon'a Hoşgeldiniz</h1>
+    <p class="text-muted mb-4">Hesabınıza giriş yapın</p>
+
+    <form action="/Login/Login" method="POST">
+        <input type="email" class="form-control" placeholder="name@example.com" name="Email" required>
+        <input type="password" class="form-control" placeholder="password" name="Password" required>
+        <button type="submit" class="btn btn-primary">Giriş yap</button>
+    </form>
+
+    <div class="divider">OR CONTINUE WITH</div>
+
+
+    <div class="signup-link">
+        Hesabınız yok mu? <a href="/Register">Kayıt ol</a>
+    </div>
+</div>
